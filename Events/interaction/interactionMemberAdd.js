@@ -11,7 +11,6 @@ module.exports = {
         
         const welcomemessage = `讓我們歡迎新成員 - @${member.user.username} 喵喵!!`;
 
-
         const welcomeEmbed = new EmbedBuilder()
             .setColor(getRandomColor())
             .setTitle(`新成員 - ${member.user.username}`)
