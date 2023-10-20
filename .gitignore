@@ -1,7 +1,7 @@
-/node_module
+node_module/
 
-/dict
+dict/
 
-/.idea
+.idea/
 
 .env
