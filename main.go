@@ -11,8 +11,7 @@ import (
 )
 
 func main() {
-	// token := os.Getenv("DCToken")
-	token := "ODIxMjk4NzA2OTc2MDc5OTAz.GwuMPe.AIRNOtf2LkxHH0lvbcln0k8fv1fVJQGlbHiB_k"
+	token := os.Getenv("DCToken")
 
 	// creates a new Discord session
 	dg, err := discordgo.New("Bot " + token)
