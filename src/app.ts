@@ -1,11 +1,16 @@
 // import npm library
-import config from "dotenv";
+import "dotenv/config";
 import { Client, GatewayIntentBits, Collection } from "discord.js";
 
 // import .ts file
-// import type "@/global_type"
-
-config.config()
+// import loadEvents from '@/handler/events'
+// import loadCommands from '@/handler/Commands'
+//
+// declare module "discord.js" {
+//   export interface Client {
+//     commands: Collection<any, any>
+//   }
+// }
 
 const { Guilds, GuildMessages, MessageContent, GuildMembers, GuildPresences } = GatewayIntentBits;
 
@@ -13,8 +18,10 @@ const client: Client = new Client({
   intents: [Guilds, GuildMessages, MessageContent, GuildMembers, GuildPresences]
 })
 
-// client.command = new Collection<string, ICommand>();
+client.commands = new Collection();
 
-// client.login(process.)
+// client.login(process.env.TOKEN)
+//   .then(() => loadEvents(client))
+//   .then(() => loadCommands(client))
 
 console.log("hello world");
