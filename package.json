@@ -11,9 +11,16 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "ts-node": "^10.9.2"
+    "@types/node": "^20.11.20",
+    "@types/request": "^2.48.12",
+    "eslint": "^8.56.0",
+    "eslint-plugin-typescript": "^0.14.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3",
+    "typescript-eslint-parser": "^22.0.0"
   },
   "dependencies": {
+    "ascii-table": "^0.0.9",
     "discord.js": "^14.14.1",
     "dotenv": "^16.4.5"
   }

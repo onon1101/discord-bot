@@ -3,25 +3,31 @@ import "dotenv/config";
 import { Client, GatewayIntentBits, Collection } from "discord.js";
 
 // import .ts file
-// import loadEvents from '@/handler/events'
-// import loadCommands from '@/handler/Commands'
-//
-// declare module "discord.js" {
-//   export interface Client {
-//     commands: Collection<any, any>
-//   }
-// }
+import loadEvents from "@/handler/events";
+import loadCommands from "@/handler/commands";
 
-const { Guilds, GuildMessages, MessageContent, GuildMembers, GuildPresences } = GatewayIntentBits;
+interface CliectWithCommands extends Client {
+  commands: Collection<any, any>;
+}
 
-const client: Client = new Client({
-  intents: [Guilds, GuildMessages, MessageContent, GuildMembers, GuildPresences]
-})
+const { Guilds, GuildMessages, MessageContent, GuildMembers, GuildPresences } =
+  GatewayIntentBits;
+
+const client = new Client({
+  intents: [
+    Guilds,
+    GuildMessages,
+    MessageContent,
+    GuildMembers,
+    GuildPresences,
+  ],
+}) as CliectWithCommands;
 
 client.commands = new Collection();
 
-// client.login(process.env.TOKEN)
-//   .then(() => loadEvents(client))
-//   .then(() => loadCommands(client))
+client
+  .login(process.env.TOKEN)
+  .then(() => loadEvents(client))
+  .then(() => loadCommands(client));
 
 console.log("hello world");
