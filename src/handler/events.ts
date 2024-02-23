@@ -3,19 +3,10 @@ import ascii from "ascii-table";
 import { Client } from "discord.js";
 
 const eachConditions = [
-  {
-    IsRestOnce: true,
-    run: (client: Client, event: any) => {},
-  },
-  { isNotRestOnce: true, run: (client: Client, event: any) => {} },
-  {
-    IsRestOnce: true,
-    run: (client: Client, event: any) => {},
-  },
-  {
-    IsRestNotOnce: true,
-    run: (client: Client, event: any) => {},
-  },
+  restAndOnce: { run: (client: Client, event: any) => { client.once(event.name, (...args) => event.execute(...args, client)) } },
+  notRestAndOnce: { run: (client: Client, event: any) => { client.once(event.name, (...args) => event.execute(...args, client)) } },
+  restAndNotOnce: { run: (client: Client, event: any) => { client.rest.on(event.name, (...args) => event.execute(...args, client)) } },
+  notRestAndNotOnce: { run: (client: Client, event: any) => { client.on(event.name, (...args => event.execute(...args, client)) } },
 ];
 
 export const loadEvents = (client: Client) => {
@@ -28,13 +19,6 @@ export const loadEvents = (client: Client) => {
 
     const event = require(`@/Events/${folderPath}/${file}`);
 
-    const { IsRest, IsOnce } = event;
-
-    if (event.rest) {
-      if (event.rest.once) {
-        client.once(event.name, (...args) => event.execute(...args, client));
-        // event.execute(...args, client);
-      }
-    }
+    eachConditions[event.status].run(client, event);
   });
 };
